@@ -1971,7 +1971,7 @@ body::after {
 @media (min-width:34.37375em) {
   .publications-home__slider .splide__list {
     display: grid!important;
-    grid-template-columns: repeat(auto-fill,minmax(15.625rem,1fr))
+    grid-template-columns: repeat(auto-fill,minmax(18.75rem,1fr))
   }
 }
 @media (min-width:47.99875em) {
@@ -2599,6 +2599,11 @@ body::after {
     .counters-home__title {
       font-size: calc(1.5rem + 1.5*(100vw - 22.5rem)/ 39.49875)
     }
+  }
+}
+@media (min-width:34.37375em)and (max-width:61.99875em) {
+  .publications-home__slider .splide__list {
+    grid-template-columns: repeat(auto-fill,minmax(15.625rem,1fr))
   }
 }
 @media (any-hover:hover) {
