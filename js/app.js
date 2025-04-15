@@ -188,8 +188,7 @@
                                 spoilerBlock.open = false;
                             }), spoilerSpeed);
                             spoilerTitle.classList.toggle("_spoiler-active");
-                            let direction = spoilersBlock.closest("[data-hrz]") && window.matchMedia("(min-width: 68.74875em)").matches ? "horizontal" : "vertical";
-                            _slideToggle(spoilerTitle.nextElementSibling, spoilerSpeed, direction);
+                            _slideToggle(spoilerTitle.nextElementSibling, spoilerSpeed);
                             if (scrollspoiler && spoilerTitle.classList.contains("_spoiler-active")) {
                                 const scrollspoilerValue = spoilerBlock.dataset.spoilerScroll;
                                 const scrollspoilerOffset = +scrollspoilerValue ? +scrollspoilerValue : 0;
@@ -210,8 +209,7 @@
                         if (spoilersBlock.classList.contains("_spoiler-init")) {
                             const spoilerSpeed = spoilersBlock.dataset.spoilersSpeed ? parseInt(spoilersBlock.dataset.spoilersSpeed) : 500;
                             spoilerClose.classList.remove("_spoiler-active");
-                            let direction = spoilersBlock.closest("[data-hrz]") && window.matchMedia("(min-width: 68.74875em)").matches ? "horizontal" : "vertical";
-                            _slideUp(spoilerItem.open ? spoilerTitle.nextElementSibling : null, 500, direction);
+                            _slideUp(spoilerClose.nextElementSibling, spoilerSpeed);
                             setTimeout((() => {
                                 spoilerCloseBlock.open = false;
                             }), spoilerSpeed);
@@ -225,8 +223,7 @@
                     const spoilerActiveTitle = spoilerActiveBlock.querySelector("summary");
                     const spoilerSpeed = spoilersBlock.dataset.spoilersSpeed ? parseInt(spoilersBlock.dataset.spoilersSpeed) : 500;
                     spoilerActiveTitle.classList.remove("_spoiler-active");
-                    let direction = spoilersBlock.closest("[data-hrz]") && window.matchMedia("(min-width: 68.74875em)").matches ? "horizontal" : "vertical";
-                    _slideUp(spoilerActiveTitle.nextElementSibling, spoilerSpeed, direction);
+                    _slideUp(spoilerActiveTitle.nextElementSibling, spoilerSpeed);
                     setTimeout((() => {
                         spoilerActiveBlock.open = false;
                     }), spoilerSpeed);
@@ -4181,9 +4178,9 @@
             });
             heroSlider.mount();
         }
-        var productsSectionSliderEl = document.querySelector(".products-section__slider");
-        if (productsSectionSliderEl) {
-            var productsSectionSlider = new Splide(productsSectionSliderEl, {
+        var productsSectionSliderEls = document.querySelectorAll(".products-section__slider");
+        productsSectionSliderEls.forEach((function(sliderEl) {
+            var slider = new Splide(sliderEl, {
                 perPage: 5,
                 arrows: true,
                 pagination: false,
@@ -4208,8 +4205,8 @@
                     }
                 }
             });
-            productsSectionSlider.mount();
-        }
+            slider.mount();
+        }));
         var imageSliderEls = document.querySelectorAll(".splide--image");
         if (imageSliderEls) imageSliderEls.forEach((imageSliderEl => {
             var slider = new Splide(imageSliderEl, {
@@ -4286,6 +4283,33 @@
                 Grid
             });
         }
+        const productSliders = document.querySelectorAll(".main-product__sliders");
+        if (productSliders.length) productSliders.forEach((sliderWrapper => {
+            const mainSlider = sliderWrapper.querySelector(".main-product__main-slider");
+            const thumbnailSlider = sliderWrapper.querySelector(".main-product__thumbnail-slider");
+            if (mainSlider && thumbnailSlider) {
+                const mainSplide = new Splide(mainSlider, {
+                    type: "fade",
+                    rewind: true,
+                    perPage: 1,
+                    pagination: false,
+                    arrows: false,
+                    breakpoints: {
+                        991.98: {
+                            pagination: true
+                        }
+                    }
+                }).mount();
+                const thumbSplide = new Splide(thumbnailSlider, {
+                    isNavigation: true,
+                    perPage: 4,
+                    gap: "1.25rem",
+                    pagination: false,
+                    arrows: false
+                }).mount();
+                mainSplide.sync(thumbSplide);
+            }
+        }));
     }));
     class ScrollWatcher {
         constructor(props) {
@@ -4551,18 +4575,67 @@
         if (e.target.closest(".icon-menu")) {
             bodyLockToggle(0);
             document.documentElement.classList.toggle("menu-open");
-        } else if (!e.target.closest(".mobile-menu")) {
+        } else if (!e.target.closest(".mobile-menu") && document.documentElement.classList.contains(`menu-open`)) {
             bodyUnlock(0);
             document.documentElement.classList.remove("menu-open");
+        }
+        if (e.target.closest("[data-filter-btn]")) {
+            bodyLockToggle(0);
+            document.documentElement.classList.toggle("filter-open");
+        } else if ((!e.target.closest(".filters-catalog") || e.target.closest(".filters-catalog__close")) && document.documentElement.classList.contains(`filter-open`)) {
+            bodyUnlock(0);
+            document.documentElement.classList.remove("filter-open");
         }
         if (e.target.closest(".footer__up")) window.scrollTo({
             top: 0,
             behavior: "smooth"
         });
+        if (e.target.closest(".video-box__play")) {
+            const button = e.target.closest(".video-box__play");
+            const container = button.closest(".video-box");
+            const video = container.querySelector(".video-box__video");
+            if (!video.classList.contains("_disabled")) {
+                if (video.paused == true) {
+                    video.play();
+                    button.classList.add("_hide");
+                } else {
+                    video.pause();
+                    button.classList.remove("_hide");
+                }
+                video.addEventListener("ended", (() => {
+                    button.classList.remove("_hide");
+                }));
+            }
+        }
+    }));
+    const numberInputs = document.querySelectorAll(".counter");
+    if (numberInputs) numberInputs.forEach((wrapperInput => {
+        const input = wrapperInput.querySelector("input");
+        const btnPlus = wrapperInput.querySelector(".counter__btn--increment");
+        const btnMinus = wrapperInput.querySelector(".counter__btn--decrement");
+        const min = parseInt(wrapperInput.getAttribute("data-min"));
+        const max = parseInt(wrapperInput.getAttribute("data-max"));
+        const validateInput = () => {
+            let value = parseInt(input.value);
+            if (isNaN(value)) value = min;
+            if (value < min) value = min; else if (value > max) value = max;
+            input.value = value;
+        };
+        btnPlus.addEventListener("click", (function() {
+            let newValue = parseInt(input.value) + 1;
+            if (newValue <= max) input.value = newValue;
+            input.dispatchEvent(new Event("input"));
+        }));
+        btnMinus.addEventListener("click", (function() {
+            let newValue = parseInt(input.value) - 1;
+            if (newValue >= min) input.value = newValue;
+            input.dispatchEvent(new Event("input"));
+        }));
+        input.addEventListener("input", validateInput);
+        input.addEventListener("blur", validateInput);
     }));
     document.addEventListener("selectCallback", (e => {
         e.detail.select.dispatchEvent(new Event("change"));
-        console.log(e.detail.select.value);
     }));
     window["FLS"] = false;
     menuInit();
