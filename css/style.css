@@ -463,10 +463,17 @@ body::after {
   object-fit: contain
 }
 .breadcrumbs ul li a,
+.cakes-share__link,
 .filters-catalog__link,
+.item-review__title a,
 .menu__submenu li a {
   text-decoration: underline;
   text-decoration-color: transparent;
+  transition: text-decoration-color .3s
+}
+.upload-comp ol li a {
+  text-decoration: underline;
+  text-decoration-color: inherit;
   transition: text-decoration-color .3s
 }
 .button {
@@ -491,8 +498,25 @@ body::after {
   align-items: center;
   justify-content: center;
   padding: .625rem .9375rem;
-  gap: .625rem;
+  gap: .625rem
+}
+.button--icon::before {
   font-size: 1.5rem
+}
+.button--icon svg {
+  width: 1.25rem;
+  height: 1.25rem
+}
+.button--border {
+  background-color: rgba(0,0,0,0);
+  color: #1e1e1e;
+  border-color: #1e1e1e
+}
+.button:disabled {
+  background-color: #b9b9b9;
+  border-color: #b9b9b9;
+  color: #fff;
+  cursor: default
 }
 .title {
   font-size: 2.25rem;
@@ -501,7 +525,6 @@ body::after {
   text-transform: uppercase
 }
 .splide__pagination {
-  display: flex!important;
   align-items: center;
   gap: .8125rem;
   border-radius: 2.1875rem!important;
@@ -709,7 +732,8 @@ body::after {
 .field {
   display: flex;
   flex-direction: column;
-  gap: .1875rem
+  gap: .1875rem;
+  position: relative
 }
 .field__input {
   position: relative
@@ -725,29 +749,24 @@ body::after {
   color: rgba(0,0,0,.3019607843)
 }
 .field__input input {
-  padding: 1.03125rem .75rem 1.03125rem 2.625rem;
+  padding: 1.03125rem .75rem 1.03125rem .75rem;
   border: .0625rem solid transparent;
   border-bottom-color: #1e1e1e;
   background-color: #fff;
   transition: border-color .3s;
   font-weight: 300;
   letter-spacing: .28rem;
-  text-transform: uppercase
-}
-.field__input input::-webkit-input-placeholder {
-  color: rgba(30,30,30,.6)
-}
-.field__input input:-ms-input-placeholder {
-  color: rgba(30,30,30,.6)
-}
-.field__input input::-ms-input-placeholder {
-  color: rgba(30,30,30,.6)
-}
-.field__input input::placeholder {
+  text-transform: uppercase;
   color: rgba(30,30,30,.6)
 }
 .field__input input:focus {
   border-color: #1e1e1e
+}
+.field__input--border input {
+  border-color: #1e1e1e
+}
+.field__input[class*=_icon-] input {
+  padding-left: 2.625rem
 }
 .field__error {
   color: #dc3f6c;
@@ -758,6 +777,29 @@ body::after {
 }
 .field:has(.field__error) input {
   border-color: #dc3f6c
+}
+.field__textarea {
+  padding: 1rem .75rem;
+  padding-bottom: 1.25rem;
+  border: .0625rem solid #1e1e1e;
+  font-weight: 300;
+  letter-spacing: .28rem;
+  text-transform: uppercase;
+  min-height: 4.375rem;
+  resize: vertical;
+  color: rgba(30,30,30,.6)
+}
+.field__textarea:focus {
+  border-color: #1e1e1e
+}
+.field__length {
+  color: #b9b9b9;
+  font-size: .875rem;
+  font-weight: 200;
+  line-height: 1.72;
+  position: absolute;
+  bottom: .1875rem;
+  right: 1.0625rem
 }
 .contacts {
   display: flex;
@@ -932,6 +974,66 @@ body::after {
   height: 100%;
   -o-object-fit: cover;
   object-fit: cover
+}
+.splide__pagination--dark {
+  background: rgba(0,0,0,.16)!important;
+  backdrop-filter: blur(.3rem)!important;
+  gap: .625rem!important;
+  top: calc(100% + 1.6875rem);
+  left: 50%!important;
+  flex-wrap: nowrap!important;
+  -webkit-transform: translateX(-50%)!important;
+  transform: translateX(-50%)!important;
+  min-height: 1.25rem!important
+}
+.splide__pagination--dark .splide__pagination__page {
+  background-color: rgba(0,0,0,.3019607843)!important
+}
+.splide__pagination--dark .splide__pagination__page.is-active {
+  background-color: #1e1e1e!important
+}
+.upload-comp__btn {
+  position: relative;
+  font-size: .875rem;
+  font-weight: 600;
+  border-width: .0625rem;
+  cursor: pointer
+}
+.upload-comp__btn input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0
+}
+.upload-comp__btn:not(:last-child) {
+  margin-bottom: .375rem
+}
+.upload-comp ol {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  counter-reset: uploads
+}
+.upload-comp ol li {
+  color: #1e1e1e;
+  font-size: 1.125rem;
+  font-weight: 200;
+  line-height: 1.72;
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  counter-increment: uploads
+}
+.upload-comp ol li:not(:last-child) {
+  margin-bottom: .25rem
+}
+.upload-comp ol li::before {
+  content: counter(uploads,decimal) "."
+}
+.upload-comp ol li button {
+  color: #b9b9b9;
+  transition: color .3s
 }
 .icon-menu {
   font-size: 2rem;
@@ -2020,23 +2122,6 @@ body::after {
 .main-product__main-slider:not(:last-child) {
   margin-bottom: 1.25rem
 }
-.main-product__main-slider .splide__pagination {
-  background: rgba(0,0,0,.16)!important;
-  backdrop-filter: blur(.3rem)!important;
-  gap: .625rem!important;
-  top: calc(100% + 1.6875rem);
-  left: 50%!important;
-  flex-wrap: nowrap!important;
-  -webkit-transform: translateX(-50%)!important;
-  transform: translateX(-50%)!important;
-  min-height: 1.25rem!important
-}
-.main-product__main-slider .splide__pagination__page {
-  background-color: rgba(0,0,0,.3019607843)!important
-}
-.main-product__main-slider .splide__pagination__page.is-active {
-  background-color: #1e1e1e!important
-}
 .main-product__thumbnail-slider .splide__slide {
   aspect-ratio: 1/1!important;
   min-height: 0!important;
@@ -2126,6 +2211,174 @@ body::after {
 }
 .spoilers-product__body {
   padding-top: .625rem
+}
+.share-cakes__title:not(:last-child) {
+  margin-bottom: 1.875rem
+}
+.share-cakes__slider:not(:last-child) {
+  margin-bottom: 3.125rem
+}
+.share-cakes__slider .splide__pagination {
+  top: calc(100% + 1.25rem)!important
+}
+.share-cakes__button {
+  font-size: .875rem;
+  padding: .875rem;
+  display: block;
+  margin: 0 auto
+}
+.share-cakes__wrapper {
+  padding-top: 3.75rem
+}
+.share-cakes__body {
+  padding: 1.875rem .625rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative
+}
+.share-cakes__bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+  object-fit: cover;
+  opacity: .2;
+  -o-object-position: center;
+  object-position: center
+}
+.share-cakes__form {
+  z-index: 2;
+  max-width: 39.0625rem;
+  width: 100%
+}
+.cakes-share {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: .9375rem
+}
+.cakes-share__image {
+  aspect-ratio: 1/1;
+  min-height: 0;
+  overflow: hidden
+}
+.cakes-share__image img {
+  transition: -webkit-transform .3s;
+  transition: transform .3s;
+  transition: transform .3s,-webkit-transform .3s;
+  will-change: transform
+}
+.cakes-share__link {
+  min-width: 0;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  color: #1e1e1e;
+  font-weight: 200;
+  letter-spacing: .1rem;
+  text-transform: uppercase;
+  max-width: 100%
+}
+.form-share {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 3.75rem;
+  background-color: #fff;
+  position: relative
+}
+.form-share__close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 1.125rem;
+  transition: color .3s
+}
+.form-share__close::before {
+  transition: -webkit-transform .3s;
+  transition: transform .3s;
+  transition: transform .3s,-webkit-transform .3s
+}
+.form-share__title {
+  text-align: center;
+  padding: 0 2.0625rem
+}
+.form-share__email {
+  display: flex
+}
+.form-share__email .field {
+  flex-grow: 1
+}
+.form-share__conf {
+  font-size: .875rem;
+  font-weight: 600;
+  padding: .6875rem .875rem;
+  border-left-width: .0625rem
+}
+.form-share__thanks {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem
+}
+.form-share__text {
+  color: #1e1e1e;
+  text-align: center;
+  font-size: 1.125rem;
+  font-weight: 200;
+  line-height: 1.72
+}
+.form-share__button {
+  font-size: .875rem;
+  font-weight: 600;
+  min-width: 11.5rem;
+  padding: 1.1875rem
+}
+.reviews-product__container {
+  display: flex;
+  flex-direction: column
+}
+.reviews-product__header:not(:last-child) {
+  margin-bottom: 3.125rem
+}
+.reviews-product__slider:not(:last-child) {
+  margin-bottom: 5rem
+}
+.reviews-product__slider .splide__slide {
+  display: flex
+}
+.item-review {
+  display: flex;
+  flex-direction: column;
+  gap: .9375rem;
+  align-items: center
+}
+.item-review__body {
+  background: url(../img/phone.webp) no-repeat top center/100%;
+  padding: 5.5rem 2rem 3.4375rem;
+  flex-grow: 1
+}
+.item-review__content {
+  padding: .625rem;
+  font-weight: 200;
+  line-height: 1.72;
+  border-radius: 1.25rem;
+  background-color: #f2eff2
+}
+.item-review__title {
+  color: #1e1e1e;
+  text-align: center;
+  font-weight: 200;
+  letter-spacing: .1rem;
+  text-transform: uppercase
+}
+.item-review__label {
+  color: rgba(128,128,128,.55);
+  font-size: .875rem;
+  text-align: center
 }
 .splide__container {
   box-sizing: border-box;
@@ -2452,11 +2705,19 @@ body::after {
   .mobile-menu__top {
     display: none
   }
+  .form-share__thanks {
+    min-height: 35.875rem
+  }
 }
 @media (min-width:34.37375em) {
   .publications-home__slider .splide__list {
     display: grid!important;
     grid-template-columns: repeat(auto-fill,minmax(18.75rem,1fr))
+  }
+}
+@media (min-width:43.74875em) {
+  .share-cakes__body {
+    min-height: 45rem
   }
 }
 @media (min-width:47.99875em) {
@@ -2465,6 +2726,9 @@ body::after {
   }
   .creator-home__title {
     font-size: 3rem
+  }
+  .share-cakes__button {
+    min-width: 19.3125rem
   }
 }
 @media (min-width:61.99875em) {
@@ -2586,7 +2850,9 @@ body::after {
   .page__catalog {
     margin-bottom: 11.875rem
   }
-  .product__main {
+  .product__main,
+  .product__reviews,
+  .product__share {
     margin-bottom: 8.75rem
   }
 }
@@ -2900,6 +3166,20 @@ body::after {
   .catalog__products {
     grid-template-columns: repeat(auto-fill,minmax(15.625rem,1fr))
   }
+  .share-cakes__title:not(:last-child) {
+    margin-bottom: 1.25rem
+  }
+  .reviews-product__header:not(:last-child) {
+    margin-bottom: 5rem
+  }
+  .reviews-product__button {
+    align-self: center
+  }
+}
+@media (max-width:43.6875em) {
+  .form-share {
+    padding: 1.25rem .625rem
+  }
 }
 @media (max-width:37.49875em) {
   .partners-home__wrapper {
@@ -2959,6 +3239,9 @@ body::after {
   .brand-home__slider {
     aspect-ratio: 1/1
   }
+  .form-share__email {
+    flex-direction: column
+  }
 }
 @media (max-width:28.12375em) {
   .catalog__actions {
@@ -2975,6 +3258,9 @@ body::after {
   }
   .contact-home__form {
     grid-template-columns: 1fr
+  }
+  .share-cakes__slider:not(:last-child) {
+    margin-bottom: 3.75rem
   }
 }
 @media (max-width:22.5em) {
@@ -3003,7 +3289,9 @@ body::after {
   .page__catalog {
     margin-bottom: 3.75rem
   }
-  .product__main {
+  .product__main,
+  .product__reviews,
+  .product__share {
     margin-bottom: 3.75rem
   }
 }
@@ -3071,12 +3359,16 @@ body::after {
     }
   }
   @supports (margin-bottom:clamp(3.75rem ,2.55rem + 5.3333333333vw ,8.75rem)) {
-    .product__main {
+    .product__main,
+    .product__reviews,
+    .product__share {
       margin-bottom: clamp(3.75rem ,2.55rem + 5.3333333333vw ,8.75rem)
     }
   }
   @supports not (margin-bottom:clamp(3.75rem ,2.55rem + 5.3333333333vw ,8.75rem)) {
-    .product__main {
+    .product__main,
+    .product__reviews,
+    .product__share {
       margin-bottom: calc(3.75rem + 5*(100vw - 22.5rem)/ 93.75)
     }
   }
@@ -3201,9 +3493,14 @@ body::after {
     background: #d9d9d9
   }
   .breadcrumbs ul li a:hover,
+  .cakes-share__link:hover,
   .filters-catalog__link:hover,
+  .item-review__title a:hover,
   .menu__submenu li a:hover {
     text-decoration-color: inherit
+  }
+  .upload-comp ol li a:hover {
+    text-decoration-color: transparent
   }
   .button:not(:disabled):hover {
     border-color: #1e1e1e;
@@ -3256,6 +3553,9 @@ body::after {
   .contacts--white .contacts__social-link:hover {
     color: #fff
   }
+  .upload-comp ol li button:not(:disabled):hover {
+    color: #1e1e1e
+  }
   .icon-menu:hover {
     color: #dc3f6c
   }
@@ -3306,6 +3606,14 @@ body::after {
   }
   .spoilers-product__title:hover {
     color: rgba(128,128,128,.55)
+  }
+  .cakes-share__image:hover img {
+    -webkit-transform: scale(1.06);
+    transform: scale(1.06)
+  }
+  .form-share__close:hover::before {
+    -webkit-transform: scale(.9);
+    transform: scale(.9)
   }
 }
 @media all and not (any-hover:hover) {
