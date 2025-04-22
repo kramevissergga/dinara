@@ -4168,8 +4168,8 @@
             this.button.classList.add("_hide");
         }
         pause() {
-            this.video.pause();
-            this.button.classList.remove("_hide");
+            if (this.video.tagName !== "IFRAME") this.video.pause();
+            if (this.button) this.button.classList.remove("_hide");
         }
         toggle() {
             if (!this.video.classList.contains("_disabled")) if (this.video.paused) this.play(); else this.pause();
@@ -4403,6 +4403,9 @@
                     arrows: false
                 });
                 mainSplide.on("move", ((newIndex, oldIndex) => {
+                    mainSplide.querySelectorAll("iframe")?.forEach((iframe => {
+                        iframe.contentWindow.postMessage('{"event":"command","func":"stopVideo","args":""}', "*");
+                    }));
                     const oldSlide = mainSplide.Components.Slides.getAt(oldIndex);
                     if (oldSlide) {
                         const videoBoxes = oldSlide.slide.querySelectorAll(".video-box");
@@ -4720,8 +4723,6 @@
     const numberInputs = document.querySelectorAll(".counter");
     if (numberInputs) numberInputs.forEach((wrapperInput => {
         const input = wrapperInput.querySelector("input");
-        const btnPlus = wrapperInput.querySelector(".counter__btn--increment");
-        const btnMinus = wrapperInput.querySelector(".counter__btn--decrement");
         const min = parseInt(wrapperInput.getAttribute("data-min"));
         const max = parseInt(wrapperInput.getAttribute("data-max"));
         const validateInput = () => {
@@ -4730,16 +4731,6 @@
             if (value < min) value = min; else if (value > max) value = max;
             input.value = value;
         };
-        btnPlus.addEventListener("click", (function() {
-            let newValue = parseInt(input.value) + 1;
-            if (newValue <= max) input.value = newValue;
-            input.dispatchEvent(new Event("input"));
-        }));
-        btnMinus.addEventListener("click", (function() {
-            let newValue = parseInt(input.value) - 1;
-            if (newValue >= min) input.value = newValue;
-            input.dispatchEvent(new Event("input"));
-        }));
         input.addEventListener("input", validateInput);
         input.addEventListener("blur", validateInput);
     }));
