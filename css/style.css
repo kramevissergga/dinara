@@ -3449,7 +3449,7 @@ body::after {
   .recipes-home__image {
     aspect-ratio: 1/1
   }
-  .catalog__filters {
+  .catalog__filters--hide {
     position: fixed;
     top: 0;
     left: 0;
@@ -3463,7 +3463,7 @@ body::after {
     transition: transform .3s;
     transition: transform .3s,-webkit-transform .3s
   }
-  .filter-open .catalog__filters {
+  .filter-open .catalog__filters--hide {
     -webkit-transform: translateX(0);
     transform: translateX(0)
   }
