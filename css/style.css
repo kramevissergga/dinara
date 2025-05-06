@@ -995,11 +995,19 @@ body::after {
   display: flex;
   align-items: center;
   gap: .9375rem;
+  cursor: pointer
+}
+.checkbox__label {
   color: #1e1e1e;
   font-size: 1.125rem;
   font-weight: 200;
   line-height: 1.72;
-  cursor: pointer
+  text-transform: capitalize;
+  flex-grow: 1
+}
+.checkbox__label span {
+  color: #b9b9b9;
+  font-size: .875rem
 }
 .checkbox::before {
   content: "";
@@ -1020,6 +1028,15 @@ body::after {
 }
 .checkbox:has(input:checked)::before {
   background: #1e1e1e url(../img/icons/check.svg) no-repeat center/contain
+}
+.checkbox .count {
+  color: #1e1e1e;
+  font-size: .75rem;
+  font-weight: 300;
+  line-height: 1.8;
+  text-align: center;
+  background-color: #f2eff2;
+  padding: 0 .375rem
 }
 .text {
   color: #1e1e1e;
