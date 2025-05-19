@@ -5,7 +5,7 @@
 	<title>Basket - Dinara</title>
 	<meta charset="UTF-8">
 	<meta name="format-detection" content="telephone=no">
-	<link rel="stylesheet" href="css/style.min.css?_v=20250506040508">
+	<link rel="stylesheet" href="css/style.min.css?_v=20250519114641">
 	<link rel="shortcut icon" href="favicon.ico">
 	<!-- <meta name="robots" content="noindex, nofollow"> -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
@@ -13,6 +13,84 @@
 
 <body>
 	<div class="wrapper">
+		<div id="popup-gift" aria-hidden="true" class="popup popup--gift">
+			<div class="popup__wrapper">
+				<div class="popup__content">
+					<button data-close class="popup__close _icon-cross-sharp"></button>
+					<div class="gift-popup">
+						<h3 class="gift-popup__title popup-title">
+							Thank you for ordering $100 – now pick your free gift!
+						</h3>
+						<div class="gift-popup__label">
+							Choose from the options below
+						</div>
+						<div class="gift-popup__items">
+							<div class="gift-popup__item item-checkout item-checkout--p-gift">
+								<div class="item-checkout__label">
+									gift
+								</div>
+								<a href="#" class="item-checkout__image">
+									<img src="img/products/01.webp" alt="Image" class="ibg ">
+								</a>
+								<div class="item-checkout__body">
+									<h3 class="item-checkout__title">
+										<a href="#">Circles cake silicone mould (SKU HM103)</a>
+									</h3>
+									<div class="item-checkout__price">
+										<span>$45.00</span>
+										$35.00
+									</div>
+								</div>
+								<label class="item-checkout__checkbox checkbox">
+									<input checked type="radio" name="gift">
+								</label>
+							</div>
+							<div class="gift-popup__item item-checkout item-checkout--p-gift">
+								<div class="item-checkout__label">
+									gift
+								</div>
+								<a href="#" class="item-checkout__image">
+									<img src="img/products/02.webp" alt="Image" class="ibg ">
+								</a>
+								<div class="item-checkout__body">
+									<h3 class="item-checkout__title">
+										<a href="#">Circles cake silicone mould (SKU HM103)</a>
+									</h3>
+									<div class="item-checkout__price">
+										<span>$45.00</span>
+										$35.00
+									</div>
+								</div>
+								<label class="item-checkout__checkbox checkbox">
+									<input type="radio" name="gift">
+								</label>
+							</div>
+							<div class="gift-popup__item item-checkout item-checkout--p-gift">
+								<div class="item-checkout__label">
+									gift
+								</div>
+								<a href="#" class="item-checkout__image">
+									<img src="img/products/03.webp" alt="Image" class="ibg ">
+								</a>
+								<div class="item-checkout__body">
+									<h3 class="item-checkout__title">
+										<a href="#">Circles cake silicone mould (SKU HM103)</a>
+									</h3>
+									<div class="item-checkout__price">
+										<span>$45.00</span>
+										$35.00
+									</div>
+								</div>
+								<label class="item-checkout__checkbox checkbox">
+									<input type="radio" name="gift">
+								</label>
+							</div>
+						</div>
+						<button class="gift-popup__button button">Continue Shopping</button>
+					</div>
+				</div>
+			</div>
+		</div>
 		<header class="header">
 			<div class="header__top">
 				<div class="header__container header__container--top">
@@ -211,7 +289,7 @@
 										<button class="item-checkout__btn _icon-trash"></button>
 									</div>
 								</div>
-								<div data-label=.webpt" class="checkout__item item-checkout item-checkout-.webpt">
+								<div data-label="gift" class="checkout__item item-checkout item-checkout--gift">
 									<span class="plus"></span>
 									<a href="#" class="item-checkout__image">
 										<img src="img/products/01.webp" alt="Image" class="ibg ibg--contain">
@@ -285,11 +363,11 @@
 								</div>
 								<div class="summary-block__field field">
 									<div class="field__input field__input--under">
-										<input type="text" placeholder="Gift certificate" name=.webpt">
+										<input type="text" placeholder="Gift certificate" name="gift">
 									</div>
 								</div>
 							</div>
-							<button class="summary-block__button button">checkout</button>
+							<button data-popup="#popup-gift" class="summary-block__button button">checkout</button>
 						</div>
 					</div>
 				</div>
@@ -387,7 +465,7 @@
 			</div>
 		</footer>
 	</div>
-	<script src="js/app.min.js?_v=20250506040508"></script>
+	<script src="js/app.min.js?_v=20250519114641"></script>
 </body>
 
 </html>
