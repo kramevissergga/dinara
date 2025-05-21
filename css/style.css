@@ -2997,10 +2997,18 @@ body::after {
 .order__field .field__textarea:focus {
   border-color: #1e1e1e
 }
+.page:has(.page__thanks) {
+  display: flex;
+  flex-direction: column
+}
+.page__thanks {
+  flex-grow: 1
+}
 .thanks {
   position: relative;
   display: flex;
   justify-content: center;
+  align-items: start;
   padding: 6.9375rem 3.125rem
 }
 .thanks__bg {
