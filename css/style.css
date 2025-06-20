@@ -1698,7 +1698,8 @@ body::after {
 .hero-home__content {
   display: flex;
   flex-direction: column;
-  align-items: center
+  align-items: center;
+  width: 100%
 }
 .hero-home__title {
   text-align: center
