@@ -412,7 +412,7 @@ body::after {
 .item-product__label {
   color: #fff;
   text-align: center;
-  line-height: 1.72;
+  line-height: 1.5;
   letter-spacing: .12rem;
   text-transform: uppercase;
   padding: 0 .5625rem;
@@ -421,6 +421,7 @@ body::after {
   top: .625rem;
   left: .625rem;
   pointer-events: none;
+  border-radius: .375rem;
   z-index: 3
 }
 .item-product__label--black {
