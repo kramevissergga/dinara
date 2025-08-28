@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Email</title>
+	<style type="text/css">
+		@import url("https://fonts.googleapis.com/css?family=Geologica:100,200,300,regular,500,600,700&display=swap");
+		@import url("https://fonts.googleapis.com/css?family=Mulish:regular,600&display=swap");
+		@import url("https://fonts.googleapis.com/css?family=Carrois+Gothic:regular&display=swap");
+
+		body {
+			margin: 0;
+			font-family: "Geologica", sans-serif;
+			background-color: #111;
+		}
+
+		table {
+			border-spacing: 0;
+			border-collapse: collapse;
+			table-layout: fixed;
+			width: 100%;
+		}
+
+		td {
+			padding: 0;
+			text-align: left;
+		}
+
+		img {
+			border: 0;
+		}
+
+		h1 {
+			color: #000;
+			font-size: 24px;
+			font-weight: 400;
+			line-height: 130%;
+			margin: 0;
+			letter-spacing: 4.8px;
+		}
+
+		h3 {
+			text-align: left;
+			font-size: 20px;
+			line-height: 20px;
+			font-weight: 400;
+			margin: 0;
+		}
+
+		h4 {
+			text-align: left;
+			font-size: 16px;
+			line-height: 18px;
+			font-weight: 400;
+			margin: 0;
+		}
+
+		p {
+			margin: 0;
+		}
+
+		a {
+			text-decoration: none;
+			color: inherit
+		}
+
+
+		.text {
+			color: #4d4d4d;
+			font-size: 16px;
+			font-weight: 300;
+			line-height: 1.45;
+		}
+
+		.text b {
+			color: #000;
+			font-weight: 400;
+		}
+
+		.text a {
+			line-height: 22px;
+			font-weight: 700;
+			text-decoration: underline;
+		}
+
+		.button {
+			color: #FFF;
+			font-size: 20px;
+			line-height: 1.3;
+			display: block;
+			letter-spacing: 3.2px;
+			padding: 12px 25px;
+			text-align: center;
+			background-color: #1E1E1E;
+		}
+
+		.columns {
+			font-size: 0;
+		}
+
+		.column {
+			width: 100%;
+			max-width: 260px;
+			display: inline-block;
+			vertical-align: middle;
+			font-size: 16px;
+		}
+
+		.columns.three .column {
+			padding: 0;
+			vertical-align: middle;
+		}
+
+		.menu-link {
+			padding: 5px 8.75px;
+			font-size: 12px;
+			display: inline-block;
+		}
+
+		.line {
+			height: 2px;
+			background-color: #000;
+		}
+
+		.main>tbody>tr:not(:last-child)>td {
+			padding: 0 0 40px;
+		}
+
+		.order-section {}
+
+		.order-section>tbody>tr:not(:last-child)>td {
+			padding: 0 0 20px;
+		}
+
+		.order-product {
+			padding: 20px;
+			border: 1px solid #e6e6e6;
+		}
+
+		.order-product>table>tbody>tr>td:first-child {
+			max-width: 72px;
+			width: 72px;
+			min-width: 72px;
+
+		}
+
+		.order-product>table>tbody>tr>td:last-child {
+			padding: 0 0 0 20px;
+		}
+
+		.order-product>table>tbody>tr>td:last-child tr:first-child td {
+			padding: 0 0 10px 0;
+		}
+
+		.order-product>table>tbody>tr>td:last-child tr:nth-child(2) td {
+			padding: 0 0 5px 0;
+		}
+
+		.order-product__image {
+			border: 1px solid #e6e6e6;
+			display: block;
+			width: 72px;
+		}
+
+		.order-product__title {
+			color: #1E1E1E;
+			font-size: 14px;
+			font-weight: 500;
+			letter-spacing: 1.4px;
+		}
+
+		.order-product__label {}
+
+		.label {}
+
+		.label span {
+			color: #b9b9b9;
+		}
+
+		.label a {
+			text-decoration: underline;
+		}
+
+		.order-info {}
+
+
+
+		.order-info {
+			padding: 10px;
+			border: 1px solid #e6e6e6;
+		}
+
+		.order-info>table>tbody>tr:not(:last-child)>td {
+			padding: 0 0 20px 0;
+		}
+
+		.order-info__header {
+
+			border-bottom: 1px solid #e6e6e6;
+		}
+
+		.order-info__title {
+			color: #1E1E1E;
+			font-size: 20px;
+			line-height: 1.4;
+			letter-spacing: 4px;
+		}
+
+		.footer>tbody>tr>td {
+			text-align: center;
+
+		}
+
+		.footer>tbody>tr:not(:last-child)>td {
+			padding: 0 0 15px 0;
+		}
+
+		.footer__logo {}
+
+		.footer__title {
+			text-align: center;
+			font-size: 20px;
+			line-height: 1.4;
+			letter-spacing: 4px;
+		}
+
+		.footer__link {
+			color: #666666;
+			font-size: 14px;
+			font-weight: 300;
+			letter-spacing: 3.92px;
+			text-align: center;
+		}
+
+		.footer__social-item {
+			display: inline-block;
+			padding: 0 10px;
+		}
+
+		.order-product__label span {
+			font-size: 14px;
+		}
+
+		.banner {}
+
+		.banner__image {
+			display: inline-block;
+		}
+
+		.banner__image,
+		.banner__image img {
+			width: 100%;
+		}
+
+		.banner__body {
+			background-color: #FAFAFA;
+		}
+
+		.banner__body>tbody>tr>td {
+			text-align: center;
+		}
+
+		.banner__link {
+			color: #FFF;
+			font-size: 18px;
+			line-height: 1.4;
+			letter-spacing: 3.671px;
+			display: inline-block;
+			padding: 0 8px;
+			background-color: #1E1E1E;
+		}
+
+		.banner__label {
+			color: #1E1E1E;
+			text-align: center;
+			font-size: 16px;
+			line-height: 1.45;
+			max-width: 368px;
+			display: inline-block;
+		}
+
+		.preview-items {}
+
+		.preview-items__cols {
+			font-size: 0;
+			padding: 7px 11px 35px;
+		}
+
+		.preview-items__item {
+			width: 50%;
+			font-size: 16px;
+			display: inline-block;
+			padding: 5px;
+		}
+
+		.preview-items__item>tbody>tr:nth-child(2)>td {
+			padding: 15px 0 12px;
+		}
+
+		.preview-items__image {
+			display: block;
+			border: 1px solid #e6e6e6;
+			width: 100%;
+			min-height: 0;
+			font-size: 0;
+		}
+
+		.preview-items__image img {
+			width: 100%;
+			min-height: 0;
+
+		}
+
+		.preview-items__title {
+			color: #1E1E1E;
+			font-weight: 200;
+			letter-spacing: 1.6px;
+		}
+	</style>
+</head>
+
+<body>
+	<center class="wrapper">
+		<div style=" max-width: 520px; padding: 40px;
+			width: 100%; background: #FFF">
+			<table class="main" width="100%">
+				<tbody>
+					<tr>
+						<td>
+							<table>
+								<tbody>
+									<tr>
+										<td style=" padding: 0 20px 0 0">
+											<img width="189" src="img/logo.webp" alt="Logo" class="logo">
+										</td>
+										<td style="text-align: right;">
+											<a href="#" style="font-size: 16px; padding: 14.5px 25px; display: inline-block;" class="button">SHOP</a>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<div class="line"></div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<h1>
+								THANK YOU FOR YOUR ORDER WITH DINARA KASKO PASTRY ART! 🎂
+							</h1>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<div class="text">
+								<p><b>Dear [Customer Name],</b></p>
+								<br>
+								<p>
+									Thank you for choosing Dinara Kasko (PASTRY ART) for your baking adventures! We’re thrilled to confirm
+									that we’ve received your order #[Order Number], placed on [Order Date].
+								</p>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<table class="order-section">
+								<tbody>
+									<tr>
+										<td>
+											<table>
+												<tbody>
+													<tr>
+														<td class="order-product">
+															<table>
+																<tbody>
+																	<tr>
+																		<td>
+																			<a href="#" class="order-product__image">
+																				<img width="72" height="72" src="img/products/01.webp" alt="Product">
+																			</a>
+																		</td>
+																		<td>
+																			<table>
+																				<tbody>
+																					<tr>
+																						<td>
+																							<h3 class="order-product__title">
+																								<a href="#">CIRCLES CAKE SILICONE MOULD (SKU HM103)</a>
+																							</h3>
+																						</td>
+																					</tr>
+																					<tr>
+																						<td>
+																							<div class="order-product__label label">
+																								<span>Qty:</span>
+																								1
+																							</div>
+																						</td>
+																					</tr>
+																					<tr>
+																						<td>
+																							<div class="order-product__label label">
+																								$35.00
+																							</div>
+																						</td>
+
+																					</tr>
+																				</tbody>
+																			</table>
+																		</td>
+																	</tr>
+																</tbody>
+															</table>
+														</td>
+													</tr>
+												</tbody>
+											</table>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<table>
+												<tbody>
+													<tr>
+														<td class="order-product">
+															<table>
+																<tbody>
+																	<tr>
+																		<td>
+																			<a href="#" class="order-product__image">
+																				<img width="72" height="72" src="img/products/02.webp" alt="Product">
+																			</a>
+																		</td>
+																		<td>
+																			<table>
+																				<tbody>
+																					<tr>
+																						<td>
+																							<h3 class="order-product__title">
+																								<a href="#">CIRCLES CAKE SILICONE MOULD (SKU HM103)</a>
+																							</h3>
+																						</td>
+																					</tr>
+																					<tr>
+																						<td>
+																							<div class="order-product__label label">
+																								<span>Qty:</span>
+																								1
+																							</div>
+																						</td>
+																					</tr>
+																					<tr>
+																						<td>
+																							<div class="order-product__label label">
+																								$35.00
+																							</div>
+																						</td>
+
+																					</tr>
+																				</tbody>
+																			</table>
+																		</td>
+																	</tr>
+																</tbody>
+															</table>
+														</td>
+													</tr>
+												</tbody>
+											</table>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<table>
+												<tbody>
+													<tr>
+														<td class="order-info">
+															<table>
+																<tbody>
+																	<tr>
+																		<td style="padding: 0 0 10px 0;" class="order-info__header">
+																			<table>
+																				<tbody>
+																					<tr>
+																						<td>
+																							<h4 class="order-info__title">TOTAL</h4>
+																						</td>
+																						<td style="text-align: right;">
+																							<div class="order-info__title">$70.00</div>
+																						</td>
+																					</tr>
+																				</tbody>
+																			</table>
+																		</td>
+																	</tr>
+																	<tr>
+																		<td style="padding: 20px 0;">
+																			<div class="label">
+																				<span>
+																					Name:
+																				</span>Elena D.
+																			</div>
+																		</td>
+																	</tr>
+																	<tr>
+																		<td>
+																			<div class="label">
+																				<span>
+																					Address:
+																				</span>
+																				23 Baker Street, Apt 4B, Springfield, IL 62701, USA
+																			</div>
+																		</td>
+																	</tr>
+																	<tr>
+																		<td>
+																			<div class="label">
+																				<span>
+																					Payment card:
+																				</span>
+																				**** **** **** 1234
+																			</div>
+																		</td>
+																	</tr>
+																	<tr>
+																		<td>
+																			<div class="label">
+																				<span>
+																					Estimated Delivery:
+																				</span>
+																				21/11/2025
+																			</div>
+																		</td>
+																	</tr>
+																	<tr>
+																		<td>
+																			<a href="#" class="button">MY ORDER LIST</a>
+																		</td>
+																	</tr>
+																</tbody>
+															</table>
+														</td>
+													</tr>
+												</tbody>
+
+											</table>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<div class="text">
+								<p>
+									We’re preparing your order with care and will notify you once it’s on its way. In the meantime, get
+									ready to create stunning pastries with our premium silicone molds!
+								</p>
+								<br>
+								<p>
+									Have questions? Contact us at <a href="mailto:support@dinarakasko.com">support@dinarakasko.com</a> or
+									call <a href="tel:+380953032020">+380953032020</a>.
+								</p>
+								<br>
+								<p>
+									Happy Baking! <br>
+									The Dinara Kasko PASTRY ART Team
+								</p>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<div class="line"></div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<table class="footer">
+								<tbody>
+									<tr>
+										<td>
+											<img width="88" height="55" src="img/footer-logo.webp" alt="Logo" class="footer__logo">
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<h3 class="footer__title">
+												CONTACTS
+											</h3>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<a href="mailto:info@dinarakasko.com" class="footer__link">INFO@DINARAKASKO.COM</a>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<a href="+380953032020" class="footer__link">+380953032020</a>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<a href="#" class="footer__social-item">
+												<img width="24" height="24" src="img/social/fb.webp" alt="Image">
+											</a>
+											<a href="#" class="footer__social-item">
+												<img width="24" height="24" src="img/social/yt.webp" alt="Image">
+											</a>
+											<a href="#" class="footer__social-item">
+												<img width="24" height="24" src="img/social/inst.webp" alt="Image">
+											</a>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</center>
+</body>
+
+</html>
